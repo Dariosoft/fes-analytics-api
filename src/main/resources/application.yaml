@@ -1,0 +1,36 @@
+spring:
+  application:
+    name: analytics-api
+  datasource:
+    url: ${DATABASE_URL:jdbc:postgresql://localhost:5432/analytics}
+    username: ${DATABASE_USERNAME:analytics}
+    password: ${DATABASE_PASSWORD:analytics-local}
+  jpa:
+    hibernate:
+      ddl-auto: validate
+    open-in-view: false
+  kafka:
+    bootstrap-servers: ${KAFKA_BOOTSTRAP_SERVERS:localhost:9092}
+    consumer:
+      auto-offset-reset: earliest
+      enable-auto-commit: false
+    listener:
+      ack-mode: record
+management:
+  endpoints:
+    web:
+      exposure:
+        include: health,info,prometheus
+  endpoint:
+    health:
+      probes:
+        enabled: true
+      group:
+        readiness:
+          include: readinessState,db
+  metrics:
+    tags:
+      application: ${spring.application.name}
+server:
+  port: ${SERVER_PORT:8080}
+  shutdown: graceful
