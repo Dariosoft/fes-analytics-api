@@ -24,5 +24,7 @@ public interface SalesMetricsRepository extends JpaRepository<SalesMetric, Sales
                   @Param("currency") String currency,
                   @Param("total") BigDecimal total);
 
-    List<SalesMetric> findByTenantIdOrderByCurrencyAsc(UUID tenantId);
+    @Query("SELECT metric FROM SalesMetric metric WHERE metric.id.tenantId = :tenantId "
+            + "ORDER BY metric.id.currency ASC")
+    List<SalesMetric> findByTenantIdOrderByCurrencyAsc(@Param("tenantId") UUID tenantId);
 }
