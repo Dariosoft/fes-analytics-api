@@ -62,7 +62,7 @@ fila por evento en `order_timeline`; `MetricsProjection` actualiza agregados por
 - `repository/OrderTimelineRepository`, `repository/SalesMetricsRepository`,
   `repository/ProcessedEventRepository`.
 - `model/OrderTimelineEntry`, `model/SalesMetric`, `model/ProcessedEvent`.
-- `controller/AnalyticsController`.
+- `controller/TimelineController` y `controller/MetricsController`, cada uno con su propio path.
 - `config/KafkaConsumerConfig` solo si hace falta; no declara topics.
 
 ## 7. Verificación

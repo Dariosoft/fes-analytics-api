@@ -21,8 +21,10 @@ sequenceDiagram
 
 ```mermaid
 classDiagram
-  class AnalyticsController {
+  class TimelineController {
     +timeline(tenantId, orderId)
+  }
+  class MetricsController {
     +metrics(tenantId)
   }
   class TimelineService
@@ -35,8 +37,8 @@ classDiagram
   class OrderTimelineListener
   class SalesMetricsListener
 
-  AnalyticsController --> TimelineService
-  AnalyticsController --> MetricsService
+  TimelineController --> TimelineService
+  MetricsController --> MetricsService
   TimelineService --> OrderTimelineRepository
   MetricsService --> SalesMetricsRepository
   MetricsService --> ProcessedEventRepository
